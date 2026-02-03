@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="tdesign-lighthouse-1-filled.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <path
+     fill="currentColor"
+     d="M18.3 3.443L12 .923l-6.3 2.52l.742 1.857L7 5.077V10H5v2h1.906c-.164 1.905-.52 3.938-.885 5.669a71 71 0 0 1-.962 3.982l-.016.057l-.004.014l-.001.003L4.674 23h5.606l1-4h1.439l1 4h5.606l-.364-1.275l-.001-.004l-.004-.013l-.016-.057l-.061-.224a71 71 0 0 1-.9-3.758c-.365-1.731-.722-3.764-.886-5.67H19v-2h-2V5.078l.557.223zm-5.296 2.555v2.004H11V5.998z"
+     id="path1" />
+</svg>

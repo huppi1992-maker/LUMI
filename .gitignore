@@ -1,0 +1,10 @@
+# Visual Studio / WPF
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Build
+*.dll
+*.exe

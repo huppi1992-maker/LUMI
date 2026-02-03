@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="tdesign-castle-6.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <g
+     fill="none"
+     id="g4">
+    <path
+       d="M16 9h5v12H3V9h5V3h8z"
+       id="path1" />
+    <path
+       d="M18 13a3 3 0 0 1 3 3v5H3v-5a3 3 0 1 1 6 0a3 3 0 1 1 6 0a3 3 0 0 1 3-3"
+       id="path2" />
+    <path
+       stroke="currentColor"
+       stroke-linecap="square"
+       stroke-width="2"
+       d="M12 7v2M9 21v-5m0 5H3v-5a3 3 0 1 1 6 0m0 5h6m-6-5a3 3 0 1 1 6 0m0 5v-5m0 5h6v-5a3 3 0 1 0-6 0"
+       id="path3" />
+    <path
+       stroke="currentColor"
+       stroke-linecap="square"
+       stroke-width="2"
+       d="M7 3h10M8 9V3h8v6zM3 9h18v12H3z"
+       id="path4" />
+  </g>
+</svg>

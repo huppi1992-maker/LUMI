@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Lumi.Views.GeneralAppearanceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="Transparent">
+    <Grid>
+        <TextBlock Text="Allgemein • Optik"
+                   Foreground="#E8DCC3"
+                   FontSize="16"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+    </Grid>
+</UserControl>

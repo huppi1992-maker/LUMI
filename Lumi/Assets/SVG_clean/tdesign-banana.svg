@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="tdesign-banana.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <defs
+     id="defs1">
+    <path
+       id="SVGDfsLhcMZ"
+       d="m21 4.18l-3-1.2v4.521c-.62 6-4.89 8.752-9.763 7.571c-1.603-.388-3.66-1.038-5.286-1.882c-.612-.318-.951.524-.951 1.31c0 3.5 5.422 7.803 12.008 6.123S23.763 11.329 21 7.5z" />
+  </defs>
+  <g
+     fill="none"
+     id="g3">
+    <path
+       d="M18 7.501c-.62 6-4.89 8.752-9.763 7.57c-3.082-.969-4.01-3.57-4.237-4.57s.232-.995.966-.645S8.118 11.674 11 11.5c4.936-.297 6.323-2.615 7-4"
+       id="path1" />
+    <path
+       id="use1"
+       d="m 21,4.18 -3,-1.2 v 4.521 c -0.62,6 -4.89,8.752 -9.763,7.571 C 6.634,14.684 4.577,14.034 2.951,13.19 2.339,12.872 2,13.714 2,14.5 2,18 7.422,22.303 14.008,20.623 20.594,18.943 23.763,11.329 21,7.5 Z" />
+    <g
+       stroke="currentColor"
+       stroke-linecap="square"
+       stroke-width="2"
+       id="g2">
+      <path
+         d="M18 7.501c-.62 6-4.89 8.752-9.763 7.57c-3.082-.969-4.01-3.57-4.237-4.57s.232-.995.966-.645S8.118 11.674 11 11.5c4.936-.297 6.323-2.615 7-4Z"
+         id="path2" />
+      <path
+         id="use2"
+         d="m 21,4.18 -3,-1.2 v 4.521 c -0.62,6 -4.89,8.752 -9.763,7.571 C 6.634,14.684 4.577,14.034 2.951,13.19 2.339,12.872 2,13.714 2,14.5 2,18 7.422,22.303 14.008,20.623 20.594,18.943 23.763,11.329 21,7.5 Z" />
+    </g>
+  </g>
+</svg>

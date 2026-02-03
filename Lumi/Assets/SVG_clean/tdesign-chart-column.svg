@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="tdesign-chart-column.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <defs
+     id="defs1">
+    <path
+       id="SVGNAfyze3G"
+       d="M18 9V5H3v4zm-4 8v-4H3v4z" />
+  </defs>
+  <g
+     fill="none"
+     id="g2">
+    <path
+       id="use1"
+       d="M 18,9 V 5 H 3 v 4 z m -4,8 V 13 H 3 v 4 z" />
+    <path
+       id="use2"
+       d="M 18,9 V 5 H 3 v 4 z m -4,8 V 13 H 3 v 4 z"
+       style="stroke:#000000;stroke-width:2;stroke-linecap:square" />
+    <path
+       stroke="currentColor"
+       stroke-linecap="square"
+       stroke-width="2"
+       d="M3 3v18h18"
+       id="path2" />
+  </g>
+</svg>

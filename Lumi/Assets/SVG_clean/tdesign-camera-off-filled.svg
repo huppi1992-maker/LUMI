@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="tdesign-camera-off-filled.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <path
+     fill="currentColor"
+     d="M2.004.59L2 .586L.586 2l3 3H1v16h18.586L22 23.414l1.41-1.41L2 .595zM6.75 12.75c0-1.28.459-2.454 1.22-3.365l1.424 1.423a3.25 3.25 0 0 0 4.548 4.548l1.423 1.424a5.25 5.25 0 0 1-8.615-4.03M23 18.766V5h-5.382l-1.5-3H7.882l-.55 1.099l4.408 4.407a5.25 5.25 0 0 1 5.503 5.503z"
+     id="path1" />
+</svg>

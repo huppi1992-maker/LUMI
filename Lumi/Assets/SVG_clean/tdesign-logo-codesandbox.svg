@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="tdesign-logo-codesandbox.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <g
+     fill="none"
+     id="g3">
+    <path
+       d="m12 22l-8.66-5V7L12 2l8.66 5v10z"
+       id="path1" />
+    <path
+       d="M20.66 12.006L16.34 14.5v4.995L20.66 17zM16.33 4.5L12 2L7.67 4.5L12 7zM7.66 19.495V14.5l-4.32-2.494V17z"
+       clip-rule="evenodd"
+       id="path2" />
+    <path
+       stroke="currentColor"
+       stroke-linecap="round"
+       stroke-width="2"
+       d="m12 12l8.66-5M12 12v10m0-10L3.34 7m17.32 0L12 2L3.34 7m17.32 0v10L12 22m0 0l-8.66-5V7m17.32 5.006L16.34 14.5v4.995L20.66 17zM12 2l4.33 2.5L12 7L7.67 4.5zM3.34 17v-4.994L7.66 14.5v4.995z"
+       id="path3" />
+  </g>
+</svg>

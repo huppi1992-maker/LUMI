@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="tdesign-museum-1-filled.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <path
+     fill="currentColor"
+     d="M17 10.101v-3.72l.034.033l1.38-1.448l-.724-.69A8.22 8.22 0 0 0 12 2a8.22 8.22 0 0 0-5.688 2.274l-.724.69l1.38 1.448L7 6.38v3.72A6.98 6.98 0 0 0 2 8H1v14h10v-7h2v7h10V8h-1c-1.959 0-3.73.804-5 2.101M3 10.1c2.282.463 4 2.481 4 4.9v5H3zM21 20h-4v-5a5 5 0 0 1 4-4.9zM13.004 6.998v2.004H11V6.998z"
+     id="path1" />
+</svg>

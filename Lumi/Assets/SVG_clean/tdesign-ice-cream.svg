@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="tdesign-ice-cream.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <g
+     fill="none"
+     id="g4">
+    <path
+       d="M17 15L9 7L2.985 19.702c-.356.83.483 1.669 1.313 1.313z"
+       id="path1" />
+    <path
+       d="M15 4c-1.366-1.366-3.634-1.366-5 0a3.55 3.55 0 0 0-1 3l8 8a3.55 3.55 0 0 0 3-1c1.366-1.366 1.366-3.634 0-5c1.366-1.366 1.366-3.634 0-5s-3.634-1.366-5 0"
+       id="path2" />
+    <path
+       stroke="currentColor"
+       stroke-linecap="square"
+       stroke-width="2"
+       d="M17 15L9 7L2.985 19.702c-.356.83.483 1.669 1.313 1.313z"
+       id="path3" />
+    <path
+       stroke="currentColor"
+       stroke-width="2"
+       d="M15 4c-1.366-1.366-3.634-1.366-5 0a3.55 3.55 0 0 0-1 3l8 8a3.55 3.55 0 0 0 3-1c1.366-1.366 1.366-3.634 0-5c1.366-1.366 1.366-3.634 0-5s-3.634-1.366-5 0Z"
+       id="path4" />
+  </g>
+</svg>

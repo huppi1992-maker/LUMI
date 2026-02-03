@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="tdesign-git-repository.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="namedview4"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <g
+     fill="none"
+     id="g4">
+    <path
+       d="M20 15H8a4 4 0 0 0-3.969 3.5A4 4 0 0 1 4 18V6a4 4 0 0 1 4-4h12z"
+       id="path1" />
+    <path
+       d="M9 15h4v4l-2-1l-2 1z"
+       id="path2" />
+    <path
+       stroke="currentColor"
+       stroke-width="2"
+       d="M9 15h4v4l-2-1l-2 1z"
+       id="path3" />
+    <path
+       stroke="currentColor"
+       stroke-width="2"
+       d="M20 15V2H7.5A3.5 3.5 0 0 0 4 5.5v13M20 15v7H7.5A3.5 3.5 0 0 1 4 18.5M20 15H7.5A3.5 3.5 0 0 0 4 18.5M9.004 6.004H9V6h.004zm0 3H9V9h.004z"
+       id="path4" />
+  </g>
+</svg>

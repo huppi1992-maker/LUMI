@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="tdesign-mobile-shortcut.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <g
+     fill="none"
+     stroke="currentColor"
+     stroke-linecap="square"
+     stroke-width="2"
+     id="g2">
+    <path
+       d="M19 19v3H5V2h14v3m-7 13h.004v.004H12z"
+       id="path1" />
+    <path
+       d="m16.057 13.057l-.351-.706L15 12l.706-.352l.351-.705l.351.705l.706.352l-.706.35zm5.048-4.667l.035.071l.07.035l-.07.035l-.035.07l-.035-.07l-.07-.035l.07-.035zm0 7.01l.035.07l.07.036l-.07.035l-.035.07l-.035-.07l-.07-.035l.07-.035z"
+       id="path2" />
+  </g>
+</svg>

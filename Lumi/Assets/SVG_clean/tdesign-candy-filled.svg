@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="tdesign-candy-filled.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <path
+     fill="currentColor"
+     d="M17.716 2.308a1 1 0 0 0-1.703.617l-.306 3.364l-1.082-1.082a3 3 0 0 0-4.243 0l-1.88 1.88l8.415 8.413l1.88-1.879a3 3 0 0 0 0-4.242l-1.082-1.081l3.365-.306a1 1 0 0 0 .616-1.703zm-15.41 15.41a1 1 0 0 1 .617-1.703l3.373-.307l2 2l-.306 3.374a1 1 0 0 1-1.703.616zm13.197-.803l-1.878 1.878a3 3 0 0 1-4.243 0L5.21 14.62a3 3 0 0 1 0-4.242L7.09 8.5z"
+     id="path1" />
+</svg>

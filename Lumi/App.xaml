@@ -1,0 +1,40 @@
+﻿<Application x:Class="Lumi.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Lumi.ViewModels"
+             xmlns:views="clr-namespace:Lumi.Views"
+             xmlns:infra="clr-namespace:Lumi.Infrastructure"
+             StartupUri="LumiBar.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Assets/Icons.generated.xaml"/>
+                <ResourceDictionary Source="Styles/Buttons.xaml"/>
+                <ResourceDictionary Source="Styles/ScrollBar.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Converter -->
+            <infra:IconKeyToGeometryConverter x:Key="IconKeyToGeometryConverter"/>
+            
+            <!-- View mappings -->
+            <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+                <views:SettingsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:GeneralAppearanceViewModel}">
+                <views:GeneralAppearanceView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vm:GeneralLanguageViewModel}">
+                <views:GeneralLanguageView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

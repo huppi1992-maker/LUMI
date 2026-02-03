@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1em"
+   height="1em"
+   viewBox="0 0 24 24"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="tdesign-qrcode.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1" />
+  <!-- Icon from TDesign Icons by TDesign - https://github.com/Tencent/tdesign-icons/blob/main/LICENSE -->
+  <defs
+     id="defs1">
+    <path
+       id="SVGWiZGSbvi"
+       d="M3 14h7v7H3zM3 3h7v7H3zm11 0h7v7h-7z" />
+  </defs>
+  <g
+     fill="none"
+     id="g3">
+    <path
+       id="use1"
+       d="m 3,14 h 7 v 7 H 3 Z M 3,3 h 7 v 7 H 3 Z m 11,0 h 7 v 7 h -7 z" />
+    <g
+       stroke="currentColor"
+       stroke-width="2"
+       id="g2">
+      <path
+         id="use2"
+         d="m 3,14 h 7 v 7 H 3 Z M 3,3 h 7 v 7 H 3 Z m 11,0 h 7 v 7 h -7 z" />
+      <path
+         d="M6.5 6.5h.004v.004H6.5zm0 11h.004v.004H6.5zm11-11h.004v.004H17.5z"
+         id="path2" />
+    </g>
+    <path
+       stroke="currentColor"
+       stroke-width="2"
+       d="M13.996 13.996H14V14h-.004zm3 3H17V17h-.004zm2 2H19V19h-.004zm2-5H21V14h-.004zm0 7H21V21h-.004zm-7 0H14V21h-.004z"
+       id="path3" />
+  </g>
+</svg>
