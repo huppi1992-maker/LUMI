@@ -166,7 +166,7 @@
 
                                 <Button Style="{StaticResource NavItemButtonStyle}"
                                         Command="{Binding ShowGeneralAppearanceCommand}">
-                                    <TextBlock Text="Optik"
+                                    <TextBlock Text="Darstellung"
                                                Foreground="#E8DCC3"/>
                                 </Button>
 

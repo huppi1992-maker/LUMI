@@ -12,7 +12,6 @@
         ShowInTaskbar="False"
         Topmost="True"
         Background="#1E1E1E">
-
     
     <Border x:Name="Root"
             Background="#242525"

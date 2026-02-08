@@ -38,9 +38,9 @@ namespace Lumi.ViewModels
             {
                 Label = "",
                 IconKey = "tdesign_setting_1_filled",
-                IconFill = (Brush)new BrushConverter().ConvertFromString("#3A7BD5"),
-                IconFillHover = (Brush)new BrushConverter().ConvertFromString("#4C8EE6"),
-                IconFillPressed = (Brush)new BrushConverter().ConvertFromString("#2E5FA8"),
+                IconFill = BrushFromHex("#3A7BD5"),
+                IconFillHover = BrushFromHex("#4C8EE6"),
+                IconFillPressed = BrushFromHex("#2E5FA8"),
                 Command = new RelayCommand(() => { /* Settings öffnen */ })
             });
 
@@ -48,12 +48,27 @@ namespace Lumi.ViewModels
             {
                 Label = "",
                 IconKey = "tdesign_poweroff",
-                IconFill = (Brush)new BrushConverter().ConvertFromString("#C93A3A"),
-                IconFillHover = (Brush)new BrushConverter().ConvertFromString("#E14B4B"),
-                IconFillPressed = (Brush)new BrushConverter().ConvertFromString("#8F1D1D"),
+                IconFill = BrushFromHex("#C93A3A"),
+                IconFillHover = BrushFromHex("#E14B4B"),
+                IconFillPressed = BrushFromHex("#8F1D1D"),
                 Command = ExitCommand
             });
         }
+
+        // Hilfsmethode zum Erstellen von Brushes aus Hex-Farbcodes
+        private static SolidColorBrush BrushFromHex(string hex)
+        {
+            // ColorConverter liefert object? -> wir prüfen explizit
+            var obj = ColorConverter.ConvertFromString(hex);
+            if (obj is not Color c)
+                throw new FormatException($"Invalid color string: {hex}");
+
+            // Freezable: frieren = weniger Memory/CPU, keine Änderungen mehr möglich (für UI-Brush perfekt)
+            var b = new SolidColorBrush(c);
+            b.Freeze();
+            return b;
+        }
+
     }
 
     public sealed class LumiBarButtonItem
