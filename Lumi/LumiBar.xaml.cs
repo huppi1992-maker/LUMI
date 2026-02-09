@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Lumi.Views;
 using Lumi.ViewModels;
+using Lumi.Models;
 using System.Windows.Threading;
 using Lumi.Infrastructure;
 
@@ -30,6 +31,8 @@ namespace Lumi
         private double _expandedWidth;
         private bool _isCollapsed;
         private bool _mouseInside;
+        private bool _isInitializing = true;
+        private bool IsHubVisible => _hub != null && _hub.IsVisible;
         private LumiHub? _hub;
 
         public LumiBar()
@@ -38,15 +41,65 @@ namespace Lumi
 
             DataContext = this;
             Loaded += MainWindow_Loaded;
+            LumiBarConfigService.ConfigChanged += OnConfigChanged;
+            LumiBarConfigService.PreviewChanged += OnPreviewChanged;
+
+            Closed += (_, _) =>
+            {
+                LumiBarConfigService.ConfigChanged -= OnConfigChanged;
+                LumiBarConfigService.PreviewChanged -= OnPreviewChanged;
+            };
 
             // Idle Timer initialisieren
             _idleTimer = new DispatcherTimer { Interval = IdleDelay };
             _idleTimer.Tick += (_, _) =>
             {
                 _idleTimer.Stop();
+                if (IsHubVisible) return;   // <-- NEU
                 if (!_mouseInside) Collapse();
             };
         }
+
+        private void BuildButtons(IEnumerable<LumiBarButtonDefinition> defs)
+        {
+            TopButtons.Clear();
+
+            foreach (var def in defs.Where(b => b.IsEnabled).OrderBy(b => b.Order))
+            {
+                var geo = Application.Current.TryFindResource(def.IconKey) as Geometry ?? Geometry.Empty;
+
+                TopButtons.Add(new LumiBarRuntimeButton
+                {
+                    Name = def.Name,
+                    Label = def.Label,
+                    IconData = geo,
+                    IconFill = BrushFromHex(def.FillHex),
+                    IconFillHover = BrushFromHex(def.HoverHex),
+                    IconFillPressed = BrushFromHex(def.PressedHex),
+                    Command = ResolveAction(def.ActionId)
+                });
+            }
+        }
+
+        private void OnConfigChanged(object? sender, EventArgs e)
+        {
+            if (_isInitializing) return;
+
+            Dispatcher.BeginInvoke(new Action(BuildButtonsFromConfig));
+        }
+
+        private void OnPreviewChanged(object? sender, EventArgs e)
+        {
+            if (_isInitializing) return;
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                var defs = _hub?.Vm?.Settings?.LumiBarManageButtons?.Buttons;
+                if (defs != null) BuildButtons(defs);
+                else BuildButtonsFromConfig();
+            }));
+        }
+
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -58,47 +111,16 @@ namespace Lumi
             MaxHeight = screenHeight * MaxHeightRatio;
             SizeToContent = SizeToContent.Height;
 
-            Dispatcher.BeginInvoke(new Action(CenterVertically),
-                DispatcherPriority.Loaded);
+            Dispatcher.BeginInvoke(new Action(CenterVertically), DispatcherPriority.ApplicationIdle);
 
-            SizeChanged += (_, _) => CenterVertically();
             _idleTimer.Start();
+            _isInitializing = false;
         }
 
         private void BuildButtonsFromConfig()
         {
             var cfg = _configService.LoadOrCreateDefault();
-
-            TopButtons.Clear();
-
-            var defs = cfg.Buttons
-                .Where(b => b.IsEnabled)
-                .OrderBy(b => b.Order)
-                .ToList();
-
-            foreach (var def in defs)
-            {
-                // IconKey -> Geometry Resource
-                var geo = TryFindResource(def.IconKey) as Geometry ?? Geometry.Empty;
-
-                // Hex -> Brush (deine BrushFromHex Helper, die du schon gebaut hast)
-                var fill = BrushFromHex(def.FillHex);
-                var hover = BrushFromHex(def.HoverHex);
-                var pressed = BrushFromHex(def.PressedHex);
-
-                var cmd = ResolveAction(def.ActionId);
-
-                TopButtons.Add(new LumiBarRuntimeButton
-                {
-                    Name = def.Name,
-                    Label = def.Label,
-                    IconData = geo,
-                    IconFill = fill,
-                    IconFillHover = hover,
-                    IconFillPressed = pressed,
-                    Command = cmd
-                });
-            }
+            BuildButtons(cfg.Buttons);
         }
 
         private ICommand ResolveAction(string actionId)
@@ -139,7 +161,13 @@ namespace Lumi
                     Top = this.Top
                 };
 
-                _hub.Closed += (_, __) => _hub = null;
+                _hub.Closed += (_, __) =>
+                {
+                    _hub = null;
+
+                    // nach Hub schließen: Auto-Hide wieder normal
+                    RestartIdleTimer();
+                };
                 _hub.Show();
             }
             else
@@ -189,6 +217,8 @@ namespace Lumi
         private void Root_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             _mouseInside = false;
+
+            if (IsHubVisible) return;
             RestartIdleTimer();
         }
 
@@ -208,6 +238,7 @@ namespace Lumi
         // --- Panel State ---
         private void Collapse()
         {
+            if (IsHubVisible) return;   // Hub offen => Bar bleibt sichtbar
             if (_isCollapsed) return;
 
             // aktuelle Höhe merken und fixieren
