@@ -12,6 +12,7 @@
 	</ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\SVG\" />
+    <Folder Include="Views\Settings\LumiHub\" />
   </ItemGroup>
 
 </Project>

@@ -196,7 +196,8 @@
                         <Expander Header="Lumi-Bar"
                                   Style="{StaticResource NavExpanderStyle}">
                             <StackPanel>
-                                <Button Style="{StaticResource NavItemButtonStyle}">
+                                <Button Style="{StaticResource NavItemButtonStyle}"
+                                        Command="{Binding ShowLumiBarManageButtonsCommand}">
                                     <TextBlock Text="Buttons verwalten" Foreground="{StaticResource TextBrush}" />
                                 </Button>
 

@@ -4,6 +4,7 @@
              xmlns:vm="clr-namespace:Lumi.ViewModels"
              xmlns:views="clr-namespace:Lumi.Views"
              xmlns:infra="clr-namespace:Lumi.Infrastructure"
+             xmlns:lumiBarViews="clr-namespace:Lumi.Views.Settings.LumiBar"
              StartupUri="LumiBar.xaml">
 
     <Application.Resources>
@@ -33,6 +34,10 @@
 
             <DataTemplate DataType="{x:Type vm:GeneralLanguageViewModel}">
                 <views:GeneralLanguageView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type vm:LumiBarManageButtonViewModel}">
+                <lumiBarViews:LumiBarManageButton/>
             </DataTemplate>
 
         </ResourceDictionary>

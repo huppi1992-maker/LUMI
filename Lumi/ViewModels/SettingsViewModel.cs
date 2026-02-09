@@ -19,9 +19,11 @@ namespace Lumi.ViewModels
 
         public GeneralAppearanceViewModel Appearance { get; } = new();
         public GeneralLanguageViewModel Language { get; } = new();
+        public LumiBarManageButtonViewModel LumiBarManageButtons { get; } = new();
 
         public ICommand ShowGeneralAppearanceCommand { get; }
         public ICommand ShowGeneralLanguageCommand { get; }
+        public ICommand ShowLumiBarManageButtonsCommand { get; }
 
         public SettingsViewModel()
         {
@@ -29,6 +31,7 @@ namespace Lumi.ViewModels
 
             ShowGeneralAppearanceCommand = new RelayCommand(() => CurrentSettingsViewModel = Appearance);
             ShowGeneralLanguageCommand = new RelayCommand(() => CurrentSettingsViewModel = Language);
+            ShowLumiBarManageButtonsCommand = new RelayCommand(() => CurrentSettingsViewModel = LumiBarManageButtons);
         }
     }
 }
