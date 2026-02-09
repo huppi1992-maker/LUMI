@@ -41,12 +41,17 @@
                         CornerRadius="2">
 
                         <Grid>
-                            <!-- ICON: skaliert auf verfügbare Fläche -->
-                            <Viewbox Margin="5"
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- ICON -->
+                            <Viewbox Grid.Row="0"
+                                     Margin="5,5,5,0"
                                      Stretch="Uniform"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center">
-                                <!-- Referenz-Koordinatenraum -->
                                 <Grid Width="24" Height="24">
                                     <Path x:Name="IconPath"
                                           Data="{Binding RelativeSource={RelativeSource TemplatedParent},
@@ -62,34 +67,60 @@
                                 </Grid>
                             </Viewbox>
 
-                            <!-- Optionaler Content später -->
-                            <ContentPresenter HorizontalAlignment="Center"
+                            <!-- LABEL (aus Content) -->
+                            <ContentPresenter x:Name="LabelPresenter"
+                                              Grid.Row="1"
+                                              Margin="6,2,6,6"
+                                              HorizontalAlignment="Center"
                                               VerticalAlignment="Center"
-                                              Visibility="Collapsed" />
+                                              RecognizesAccessKey="True">
+
+                                <ContentPresenter.ContentTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"
+                                                   Foreground="#E8DCC3"
+                                                   FontSize="10"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   TextAlignment="Center"/>
+                                    </DataTemplate>
+                                </ContentPresenter.ContentTemplate>
+                            </ContentPresenter>
                         </Grid>
                     </Border>
 
                     <!-- States -->
                     <ControlTemplate.Triggers>
+                        <!-- Label verstecken, wenn Content leer oder null -->
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter TargetName="LabelPresenter" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="">
+                            <Setter TargetName="LabelPresenter" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="IconPath"
-                                    Property="Stroke"
-                                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(infra:IconButton.IconFillHover)}"/>
+                    Property="Stroke"
+                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(infra:IconButton.IconFillHover)}"/>
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
                             <Setter TargetName="IconPath"
-                                    Property="Stroke"
-                                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(infra:IconButton.IconFillPressed)}"/>
+                    Property="Stroke"
+                    Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(infra:IconButton.IconFillPressed)}"/>
                         </Trigger>
 
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="IconPath"
-                                    Property="Opacity"
-                                    Value="0.4"/>
+                    Property="Opacity"
+                    Value="0.4"/>
+                            <Setter TargetName="LabelPresenter"
+                    Property="Opacity"
+                    Value="0.4"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
+
             </Setter.Value>
         </Setter>
     </Style>

@@ -52,6 +52,7 @@
                                     SizeChanged="SquareButton_SizeChanged"
                                     Style="{StaticResource SquareButtonStyle_V2}"
                                     Command="{Binding Command}"
+                                    Content="{Binding Label}"
                                     local:IconButton.IconData="{Binding IconData}"
                                     local:IconButton.IconFill="{Binding IconFill}"
                                     local:IconButton.IconFillHover="{Binding IconFillHover}"
