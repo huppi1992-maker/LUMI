@@ -66,8 +66,26 @@ namespace Lumi.Infrastructure
             {
                 Buttons =
                 {
-                    new() { Order = 0, Name = "Home", Label = "", IconKey = "tdesign_home_1_filled", ActionId = "open_home" },
-                    new() { Order = 1, Name = "Settings", Label = "", IconKey = "tdesign_setting_1_filled", ActionId = "open_settings" }
+                    new()
+                    {
+                        Order = 0,
+                        Name = "Lumi Hub",
+                        IconKey = "tdesign_houses_2",
+                        ActionId = "open_hub",
+                        FillHex = "#3FAE6A",
+                        HoverHex = "#52C47A",
+                        PressedHex = "#2F8E56"
+                    },
+                    new()
+                    {
+                        Order = 1,
+                        Name = "Buttons verwalten",
+                        IconKey = "tdesign_setting_1_filled",
+                        ActionId = "open_lumibar_button_management",
+                        FillHex = "#3A7BD5",
+                        HoverHex = "#4C8EE6",
+                        PressedHex = "#2E5FA8"
+                    }
                 }
             };
         }

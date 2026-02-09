@@ -1,15 +1,24 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Lumi.Views;
 using Lumi.ViewModels;
 using System.Windows.Threading;
+using Lumi.Infrastructure;
 
 namespace Lumi
 {
     public partial class LumiBar: Window
     {
+        public ObservableCollection<LumiBarRuntimeButton> TopButtons { get; } = new();
+
+        private readonly LumiBarConfigService _configService = new();
+
         private const double PanelWidthRatio = 0.03; // 03 %
         private const double MaxHeightRatio = 0.90; // 90 %
         private double _expandedHeight;
@@ -27,7 +36,7 @@ namespace Lumi
         {
             InitializeComponent();
 
-            DataContext = new LumiBarViewModel();
+            DataContext = this;
             Loaded += MainWindow_Loaded;
 
             // Idle Timer initialisieren
@@ -41,18 +50,113 @@ namespace Lumi
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            ApplyPanelLayout();
+            BuildButtonsFromConfig(); // <-- NEU
 
+            ApplyPanelLayout();
             var screenHeight = SystemParameters.PrimaryScreenHeight;
 
             MaxHeight = screenHeight * MaxHeightRatio;
             SizeToContent = SizeToContent.Height;
 
             Dispatcher.BeginInvoke(new Action(CenterVertically),
-                System.Windows.Threading.DispatcherPriority.Loaded);
+                DispatcherPriority.Loaded);
 
             SizeChanged += (_, _) => CenterVertically();
             _idleTimer.Start();
+        }
+
+        private void BuildButtonsFromConfig()
+        {
+            var cfg = _configService.LoadOrCreateDefault();
+
+            TopButtons.Clear();
+
+            var defs = cfg.Buttons
+                .Where(b => b.IsEnabled)
+                .OrderBy(b => b.Order)
+                .ToList();
+
+            foreach (var def in defs)
+            {
+                // IconKey -> Geometry Resource
+                var geo = TryFindResource(def.IconKey) as Geometry ?? Geometry.Empty;
+
+                // Hex -> Brush (deine BrushFromHex Helper, die du schon gebaut hast)
+                var fill = BrushFromHex(def.FillHex);
+                var hover = BrushFromHex(def.HoverHex);
+                var pressed = BrushFromHex(def.PressedHex);
+
+                var cmd = ResolveAction(def.ActionId);
+
+                TopButtons.Add(new LumiBarRuntimeButton
+                {
+                    Name = def.Name,
+                    Label = def.Label,
+                    IconData = geo,
+                    IconFill = fill,
+                    IconFillHover = hover,
+                    IconFillPressed = pressed,
+                    Command = cmd
+                });
+            }
+        }
+
+        private ICommand ResolveAction(string actionId)
+        {
+            return actionId switch
+            {
+                "open_hub" => new RelayCommand(OpenHub),
+                "open_lumibar_button_management" => new RelayCommand(OpenLumiBarButtonManagement),
+                _ => new RelayCommand(() => { }) // Unknown Action: no-op
+            };
+        }
+
+        private void OpenHub()
+        {
+            // Minimal: Hub öffnen und auf Home springen
+            EnsureHubVisible();
+            _hub?.Vm.ShowHomeCommand.Execute(null);
+        }
+
+        private void OpenLumiBarButtonManagement()
+        {
+            EnsureHubVisible();
+            // 1) Hub auf Settings-View wechseln
+            _hub?.Vm.ShowSettingsCommand.Execute(null);
+
+            // 2) Innerhalb Settings die gewünschte Unterseite aktivieren
+            _hub?.Vm.Settings.ShowLumiBarManageButtonsCommand.Execute(null);
+        }
+
+        private void EnsureHubVisible()
+        {
+            if (_hub == null || !_hub.IsVisible)
+            {
+                _hub = new LumiHub(HubStart.Home) // oder HubStart.Settings je nachdem
+                {
+                    Owner = this,
+                    Left = this.Left + this.Width + 10,
+                    Top = this.Top
+                };
+
+                _hub.Closed += (_, __) => _hub = null;
+                _hub.Show();
+            }
+            else
+            {
+                _hub.Activate();
+            }
+        }
+
+        private static SolidColorBrush BrushFromHex(string hex)
+        {
+            var obj = ColorConverter.ConvertFromString(hex);
+            if (obj is not Color c)
+                throw new FormatException($"Invalid color string: {hex}");
+
+            var b = new SolidColorBrush(c);
+            b.Freeze();
+            return b;
         }
 
         private void CenterVertically()

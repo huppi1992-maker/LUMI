@@ -39,15 +39,23 @@
                            BasedOn="{StaticResource SlimVerticalScrollBar}"/>
                 </ScrollViewer.Resources>
 
-                <ItemsControl ItemsSource="{Binding MainButtons}">
+                <ItemsControl ItemsSource="{Binding TopButtons}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button
-                                Margin="0,0,0,8"
-                                SizeChanged="SquareButton_SizeChanged"
-                                Style="{StaticResource SquareButtonStyle_V2}"
-                                Command="{Binding Command}"
-                                local:IconButton.IconData="{Binding IconKey, Converter={StaticResource IconKeyToGeometryConverter}}" />
+                            <Button Margin="0,0,0,8"
+                                    SizeChanged="SquareButton_SizeChanged"
+                                    Style="{StaticResource SquareButtonStyle_V2}"
+                                    Command="{Binding Command}"
+                                    local:IconButton.IconData="{Binding IconData}"
+                                    local:IconButton.IconFill="{Binding IconFill}"
+                                    local:IconButton.IconFillHover="{Binding IconFillHover}"
+                                    local:IconButton.IconFillPressed="{Binding IconFillPressed}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
