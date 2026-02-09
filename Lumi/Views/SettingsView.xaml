@@ -221,20 +221,12 @@
                 Padding="2">
 
             <!-- Für den Anfang: einfacher ContentHost + Überschrift -->
-            <Grid>
+            <Grid Cursor="">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="12"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock x:Name="PageTitle"
-                           Text="Allgemein • Optik"
-                           Foreground="{StaticResource TextBrush}"
-                           FontSize="16"
-                           FontWeight="Bold"/>
-
-                <Border Grid.Row="2"
+                <Border Grid.Row="0"
                         Background="#242525"
                         BorderBrush="{StaticResource StrokeBrush}"
                         BorderThickness="1"
