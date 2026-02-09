@@ -60,7 +60,7 @@ namespace Lumi.ViewModels
                 Order = nextOrder,
                 Name = "Neuer Button",
                 Label = "",
-                IconKey = "tdesign_plus_filled",
+                IconKey = "tdesign_add",
                 FillHex = "#3A7BD5",
                 HoverHex = "#4C8EE6",
                 PressedHex = "#2E5FA8",

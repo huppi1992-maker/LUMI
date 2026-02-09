@@ -92,6 +92,9 @@ namespace Lumi
         {
             if (_isInitializing) return;
 
+            // Wenn Maus über der Bar ist, kein Live-Rebuild (sonst Klicks werden verschluckt)
+            if (_mouseInside) return;
+
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 var defs = _hub?.Vm?.Settings?.LumiBarManageButtons?.Buttons;
@@ -103,7 +106,7 @@ namespace Lumi
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            BuildButtonsFromConfig(); // <-- NEU
+            BuildButtonsFromConfig();
 
             ApplyPanelLayout();
             var screenHeight = SystemParameters.PrimaryScreenHeight;
@@ -136,43 +139,53 @@ namespace Lumi
         private void OpenHub()
         {
             // Minimal: Hub öffnen und auf Home springen
-            EnsureHubVisible();
-            _hub?.Vm.ShowHomeCommand.Execute(null);
+            EnsureHubVisible(h =>
+            {
+                h.Vm.ShowHomeCommand.Execute(null);
+            });
         }
 
         private void OpenLumiBarButtonManagement()
         {
-            EnsureHubVisible();
-            // 1) Hub auf Settings-View wechseln
-            _hub?.Vm.ShowSettingsCommand.Execute(null);
-
-            // 2) Innerhalb Settings die gewünschte Unterseite aktivieren
-            _hub?.Vm.Settings.ShowLumiBarManageButtonsCommand.Execute(null);
+            EnsureHubVisible(h =>
+            {
+                h.Vm.ShowSettingsCommand.Execute(null);
+                h.Vm.Settings.ShowLumiBarManageButtonsCommand.Execute(null);
+            });
         }
 
-        private void EnsureHubVisible()
+        private void EnsureHubVisible(Action<LumiHub> onReady)
         {
             if (_hub == null || !_hub.IsVisible)
             {
-                _hub = new LumiHub(HubStart.Home) // oder HubStart.Settings je nachdem
+                _hub = new LumiHub(HubStart.Home)
                 {
                     Owner = this,
                     Left = this.Left + this.Width + 10,
                     Top = this.Top
                 };
 
+                RoutedEventHandler? loadedHandler = null;
+                loadedHandler = (_, __) =>
+                {
+                    _hub.Loaded -= loadedHandler!;
+                    onReady(_hub);
+                };
+
+                _hub.Loaded += loadedHandler;
+
                 _hub.Closed += (_, __) =>
                 {
                     _hub = null;
-
-                    // nach Hub schließen: Auto-Hide wieder normal
                     RestartIdleTimer();
                 };
+
                 _hub.Show();
             }
             else
             {
                 _hub.Activate();
+                onReady(_hub);
             }
         }
 
