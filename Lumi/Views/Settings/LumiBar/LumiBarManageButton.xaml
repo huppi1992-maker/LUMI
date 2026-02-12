@@ -40,7 +40,8 @@
                                            Foreground="#E8DCC3"
                                            VerticalAlignment="Center"/>
 
-                                <CheckBox Grid.Column="1"
+                                <CheckBox Style="{StaticResource LumiCheckBox}"
+                                          Grid.Column="1"
                                           IsChecked="{Binding IsEnabled}"
                                           VerticalAlignment="Center"
                                           Margin="10,0,0,0"/>
@@ -81,25 +82,25 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Name (intern)" Foreground="#E8DCC3" VerticalAlignment="Center"/>
-                    <TextBox   Grid.Row="0" Grid.Column="1" Text="{Binding SelectedButton.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="0" Grid.Column="1" Text="{Binding SelectedButton.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Label (optional)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox   Grid.Row="1" Grid.Column="1" Text="{Binding SelectedButton.Label, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedButton.Label, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="IconKey" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox   Grid.Row="3" Grid.Column="1" Text="{Binding SelectedButton.IconKey, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="3" Grid.Column="1" Text="{Binding SelectedButton.IconKey, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="ActionId" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox   Grid.Row="4" Grid.Column="1" Text="{Binding SelectedButton.ActionId, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="4" Grid.Column="1" Text="{Binding SelectedButton.ActionId, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="5" Grid.Column="0" Text="Fill (Hex)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox   Grid.Row="5" Grid.Column="1" Text="{Binding SelectedButton.FillHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="5" Grid.Column="1" Text="{Binding SelectedButton.FillHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Hover (Hex)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox   Grid.Row="6" Grid.Column="1" Text="{Binding SelectedButton.HoverHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="6" Grid.Column="1" Text="{Binding SelectedButton.HoverHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="7" Grid.Column="0" Text="Pressed (Hex)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox   Grid.Row="7" Grid.Column="1" Text="{Binding SelectedButton.PressedHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="7" Grid.Column="1" Text="{Binding SelectedButton.PressedHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
                 </Grid>
 
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
