@@ -19,9 +19,9 @@ namespace Lumi.ViewModels
             get => _selectedButton;
             set
             {
-                _selectedButton = value;
-                OnPropertyChanged();
-                RaiseCommandStates();
+                // Einheitlicher Setter (Equality-Check + PropertyChanged)
+                if (SetProperty(ref _selectedButton, value))
+                    RaiseCommandStates();
             }
         }
 
@@ -53,11 +53,10 @@ namespace Lumi.ViewModels
 
         private void AddButton()
         {
-            var nextOrder = Buttons.Count == 0 ? 0 : Buttons.Max(b => b.Order) + 1;
-
+            // Order wird danach normalisiert, daher reicht ein plausibler Initialwert
             var btn = new LumiBarButtonDefinition
             {
-                Order = nextOrder,
+                Order = Buttons.Count,
                 Name = "Neuer Button",
                 Label = "",
                 IconKey = "tdesign_add",
@@ -69,8 +68,12 @@ namespace Lumi.ViewModels
             };
 
             Buttons.Add(btn);
-            SelectedButton = btn;
             NormalizeOrderInCollection();
+
+            // Selection aktualisieren (Setter triggert Command-States)
+            SelectedButton = btn;
+
+            // Buttons-Änderungen beeinflussen MoveUp/MoveDown zusätzlich zur Selection
             RaiseCommandStates();
         }
 
@@ -81,18 +84,24 @@ namespace Lumi.ViewModels
             var idx = Buttons.IndexOf(SelectedButton);
             Buttons.Remove(SelectedButton);
 
+            NormalizeOrderInCollection();
+
+            // Neue Selection: bevorzugt gleicher Index, sonst letztes Element
             SelectedButton = Buttons.Count == 0
                 ? null
                 : Buttons.ElementAtOrDefault(idx) ?? Buttons.Last();
 
-            NormalizeOrderInCollection();
+            // Collection-Änderung beeinflusst MoveUp/MoveDown auch ohne Selection-Change
             RaiseCommandStates();
         }
 
         private bool CanMove(int delta)
         {
             if (SelectedButton == null) return false;
+
             var idx = Buttons.IndexOf(SelectedButton);
+            if (idx < 0) return false;
+
             var target = idx + delta;
             return target >= 0 && target < Buttons.Count;
         }
@@ -100,8 +109,10 @@ namespace Lumi.ViewModels
         private void MoveUp()
         {
             if (!CanMove(-1) || SelectedButton == null) return;
+
             var idx = Buttons.IndexOf(SelectedButton);
             Buttons.Move(idx, idx - 1);
+
             NormalizeOrderInCollection();
             RaiseCommandStates();
         }
@@ -109,14 +120,17 @@ namespace Lumi.ViewModels
         private void MoveDown()
         {
             if (!CanMove(+1) || SelectedButton == null) return;
+
             var idx = Buttons.IndexOf(SelectedButton);
             Buttons.Move(idx, idx + 1);
+
             NormalizeOrderInCollection();
             RaiseCommandStates();
         }
 
         private void Save()
         {
+            // Persistiert die Reihenfolge so, wie sie in der Collection aktuell ist
             _config.Buttons = Buttons.ToList();
             _service.Save(_config);
         }
@@ -129,18 +143,22 @@ namespace Lumi.ViewModels
             foreach (var b in _config.Buttons.OrderBy(b => b.Order))
                 Buttons.Add(b);
 
+            NormalizeOrderInCollection();
             SelectedButton = Buttons.FirstOrDefault();
+
             RaiseCommandStates();
         }
 
         private void NormalizeOrderInCollection()
         {
+            // Stellt sicher, dass Order immer zur sichtbaren Reihenfolge passt
             for (int i = 0; i < Buttons.Count; i++)
                 Buttons[i].Order = i;
         }
 
         private void RaiseCommandStates()
         {
+            // CanExecute hängt von Selection und von Position innerhalb der Collection ab
             (RemoveSelectedCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (MoveUpCommand as RelayCommand)?.RaiseCanExecuteChanged();
             (MoveDownCommand as RelayCommand)?.RaiseCanExecuteChanged();

@@ -1,20 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using Lumi.Views;
-using Lumi.ViewModels;
-using Lumi.Models;
 using System.Windows.Threading;
 using Lumi.Infrastructure;
+using Lumi.Models;
+using Lumi.ViewModels;
+using Lumi.Views;
 
 namespace Lumi
 {
-    public partial class LumiBar: Window
+    public partial class LumiBar : Window
     {
         public ObservableCollection<LumiBarRuntimeButton> TopButtons { get; } = new();
 
@@ -32,8 +35,52 @@ namespace Lumi
         private bool _isCollapsed;
         private bool _mouseInside;
         private bool _isInitializing = true;
-        private bool IsHubVisible => _hub != null && _hub.IsVisible;
+
         private LumiHub? _hub;
+        private bool IsHubVisible => _hub != null && _hub.IsVisible;
+
+        // -----------------------------
+        // Hub-Position Persistenz
+        // -----------------------------
+        private static readonly string HubPosPath =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LUMI", "hubpos.json");
+
+        private sealed class HubPos
+        {
+            public double L { get; set; }
+            public double T { get; set; }
+        }
+
+        private static HubPos? LoadHubPos()
+        {
+            try
+            {
+                if (!File.Exists(HubPosPath))
+                    return null;
+
+                var json = File.ReadAllText(HubPosPath);
+                return JsonSerializer.Deserialize<HubPos>(json);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private static void SaveHubPos(double l, double t)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(HubPosPath)!);
+
+                var json = JsonSerializer.Serialize(new HubPos { L = l, T = t });
+                File.WriteAllText(HubPosPath, json);
+            }
+            catch
+            {
+                // no-op
+            }
+        }
 
         public LumiBar()
         {
@@ -55,7 +102,7 @@ namespace Lumi
             _idleTimer.Tick += (_, _) =>
             {
                 _idleTimer.Stop();
-                if (IsHubVisible) return;   // <-- NEU
+                if (IsHubVisible) return;
                 if (!_mouseInside) Collapse();
             };
         }
@@ -103,7 +150,6 @@ namespace Lumi
             }));
         }
 
-
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             BuildButtonsFromConfig();
@@ -138,11 +184,7 @@ namespace Lumi
 
         private void OpenHub()
         {
-            // Minimal: Hub öffnen und auf Home springen
-            EnsureHubVisible(h =>
-            {
-                h.Vm.ShowHomeCommand.Execute(null);
-            });
+            EnsureHubVisible(h => h.Vm.ShowHomeCommand.Execute(null));
         }
 
         private void OpenLumiBarButtonManagement()
@@ -158,11 +200,13 @@ namespace Lumi
         {
             if (_hub == null || !_hub.IsVisible)
             {
+                var p = LoadHubPos();
+
                 _hub = new LumiHub(HubStart.Home)
                 {
                     Owner = this,
-                    Left = this.Left + this.Width + 10,
-                    Top = this.Top
+                    Left = p?.L ?? (this.Left + this.Width + 10),
+                    Top = p?.T ?? this.Top
                 };
 
                 RoutedEventHandler? loadedHandler = null;
@@ -176,6 +220,9 @@ namespace Lumi
 
                 _hub.Closed += (_, __) =>
                 {
+                    // Position genau einmal am Ende speichern (kein IO-Spam beim Ziehen)
+                    SaveHubPos(_hub.Left, _hub.Top);
+
                     _hub = null;
                     RestartIdleTimer();
                 };
@@ -206,7 +253,6 @@ namespace Lumi
             var screenHeight = SystemParameters.PrimaryScreenHeight;
             Top = (screenHeight - ActualHeight) / 2;
         }
-
 
         private void ApplyPanelLayout()
         {
@@ -251,7 +297,7 @@ namespace Lumi
         // --- Panel State ---
         private void Collapse()
         {
-            if (IsHubVisible) return;   // Hub offen => Bar bleibt sichtbar
+            if (IsHubVisible) return;
             if (_isCollapsed) return;
 
             // aktuelle Höhe merken und fixieren
@@ -315,23 +361,8 @@ namespace Lumi
         // Button Funktionalität
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            if (_hub == null || !_hub.IsVisible)
-            {
-                _hub = new LumiHub(HubStart.Settings)
-                {
-                    Owner = this,
-                    Left = this.Left + this.Width + 10,
-                    Top = this.Top
-                };
-
-                _hub.Closed += (_, __) => _hub = null;
-                _hub.Show();
-            }
-            else
-            {
-                _hub.Activate();
-                _hub.Vm.ShowSettingsCommand.Execute(null);
-            }
+            // Einheitlicher Codepfad: kein doppeltes Hub-Opening mehr
+            EnsureHubVisible(h => h.Vm.ShowSettingsCommand.Execute(null));
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
