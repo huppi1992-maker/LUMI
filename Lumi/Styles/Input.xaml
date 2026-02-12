@@ -208,4 +208,70 @@
         </Setter>
     </Style>
 
+    <!-- =========================
+     Form Button
+     ========================= -->
+    <Style x:Key="LumiFormButton" TargetType="{x:Type Button}">
+        <Setter Property="Foreground" Value="{StaticResource Input_Fg}" />
+        <Setter Property="Background" Value="{StaticResource Input_Bg}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Input_Border}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Padding" Value="14,7" />
+        <Setter Property="MinHeight" Value="34" />
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="Bd"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{StaticResource Input_CornerRadius}"
+                            Padding="{TemplateBinding Padding}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True"/>
+                    </Border>
+
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Input_BgHover}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Input_BorderHover}" />
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource Input_BgFocus}" />
+                            <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource Input_BorderFocus}" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Bd" Property="Opacity" Value="0.5"/>
+                            <Setter Property="Foreground" Value="{StaticResource Input_FgDisabled}" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="LumiFormButtonPrimary"
+       TargetType="{x:Type Button}"
+       BasedOn="{StaticResource LumiFormButton}">
+
+        <Setter Property="Background" Value="{StaticResource Input_BorderFocus}" />
+        <Setter Property="BorderBrush" Value="{StaticResource Input_BorderFocus}" />
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#5FA3FF"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="#3B7FD6"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
