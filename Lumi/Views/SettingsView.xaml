@@ -154,21 +154,38 @@
                         <!-- Allgemein -->
                         <Expander Header="Allgemein"
                                   Style="{StaticResource NavExpanderStyle}"
-                                  IsExpanded="True"
+                                  IsExpanded="{Binding IsGeneralExpanded}"
                                   Margin="0,0,0,10">
                             <StackPanel>
-                                <Button Style="{StaticResource NavItemButtonStyle}"
-                                        Command="{Binding ShowGeneralLanguageCommand}">
-                                    <TextBlock Text="Sprache"
-                                               Foreground="#E8DCC3"/>
+                                <Button Command="{Binding ShowGeneralLanguageCommand}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource NavItemButtonStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsGeneralLanguageSelected}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource HoverBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+
+                                    <TextBlock Text="Sprache" Foreground="{StaticResource TextBrush}"/>
                                 </Button>
 
 
-                                <Button Style="{StaticResource NavItemButtonStyle}"
-                                        Command="{Binding ShowGeneralAppearanceCommand}">
-                                    <TextBlock Text="Darstellung"
-                                               Foreground="#E8DCC3"/>
+                                <Button Command="{Binding ShowGeneralAppearanceCommand}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource NavItemButtonStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsGeneralAppearanceSelected}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource HoverBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+
+                                    <TextBlock Text="Darstellung" Foreground="{StaticResource TextBrush}"/>
                                 </Button>
+
 
 
                                 <Button Style="{StaticResource NavItemButtonStyle}">
@@ -180,11 +197,13 @@
                         <!-- Lumi-Hub -->
                         <Expander Header="Lumi-Hub"
                                   Style="{StaticResource NavExpanderStyle}"
+                                  IsExpanded="{Binding IsLumiHubExpanded}"
                                   Margin="0,0,0,10">
                             <StackPanel>
                                 <Button Style="{StaticResource NavItemButtonStyle}">
-                                    <TextBlock Text="Buttons verwalten" Foreground="{StaticResource TextBrush}" />
+                                    <TextBlock Text="Tools Verwalten" Foreground="{StaticResource TextBrush}" />
                                 </Button>
+
 
                                 <Button Style="{StaticResource NavItemButtonStyle}">
                                     <TextBlock Text="Layout" Foreground="{StaticResource TextBrush}" />
@@ -194,10 +213,21 @@
 
                         <!-- Lumi-Bar -->
                         <Expander Header="Lumi-Bar"
-                                  Style="{StaticResource NavExpanderStyle}">
+                                  Style="{StaticResource NavExpanderStyle}"
+                                  IsExpanded="{Binding IsLumiBarExpanded}"
+                                  Margin="0,0,0,10">
                             <StackPanel>
-                                <Button Style="{StaticResource NavItemButtonStyle}"
-                                        Command="{Binding ShowLumiBarManageButtonsCommand}">
+                                <Button Command="{Binding ShowLumiBarManageButtonsCommand}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource NavItemButtonStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsLumiBarButtonsSelected}" Value="True">
+                                                    <Setter Property="Background" Value="{StaticResource HoverBrush}"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+
                                     <TextBlock Text="Buttons verwalten" Foreground="{StaticResource TextBrush}" />
                                 </Button>
 

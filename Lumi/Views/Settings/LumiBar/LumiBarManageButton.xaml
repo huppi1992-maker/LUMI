@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Background="Transparent">
 
-    <Grid Margin="12">
+    <Grid Margin="12" Cursor="">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240"/>
             <ColumnDefinition Width="12"/>
@@ -25,7 +25,7 @@
                 </StackPanel>
 
                 <ListBox ItemsSource="{Binding Buttons}"
-                         SelectedItem="{Binding SelectedButton}"
+                         SelectedItem="{Binding SelectedButton, Mode=TwoWay}"
                          Background="Transparent"
                          BorderThickness="0">
                     <ListBox.ItemTemplate>
@@ -62,9 +62,13 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Text="Button Settings"
-                           Foreground="#E8DCC3"
-                           FontSize="16"/>
+                <!-- Header + Status -->
+                <DockPanel Grid.Row="0">
+                    <TextBlock Text="Button Settings"
+                       Foreground="#E8DCC3"
+                       FontSize="16"
+                       DockPanel.Dock="Left"/>
+                </DockPanel>
 
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
@@ -81,33 +85,59 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Name (intern)" Foreground="#E8DCC3" VerticalAlignment="Center"/>
-                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="0" Grid.Column="1" Text="{Binding SelectedButton.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Style="{StaticResource LumiTextBox}"
+                     Grid.Row="0" Grid.Column="1"
+                     Text="{Binding SelectedButton.Name, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Label (optional)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="1" Grid.Column="1" Text="{Binding SelectedButton.Label, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox Style="{StaticResource LumiTextBox}"
+                     Grid.Row="1" Grid.Column="1"
+                     Text="{Binding SelectedButton.Label, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"
+                     Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="IconKey" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="3" Grid.Column="1" Text="{Binding SelectedButton.IconKey, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox Style="{StaticResource LumiTextBox}"
+                     Grid.Row="3" Grid.Column="1"
+                     Text="{Binding SelectedButton.IconKey, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"
+                     Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="ActionId" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="4" Grid.Column="1" Text="{Binding SelectedButton.ActionId, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox Style="{StaticResource LumiTextBox}"
+                     Grid.Row="4" Grid.Column="1"
+                     Text="{Binding SelectedButton.ActionId, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"
+                     Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="5" Grid.Column="0" Text="Fill (Hex)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="5" Grid.Column="1" Text="{Binding SelectedButton.FillHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox Style="{StaticResource LumiTextBox}"
+                     Grid.Row="5" Grid.Column="1"
+                     Text="{Binding SelectedButton.FillHex, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"
+                     Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="6" Grid.Column="0" Text="Hover (Hex)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="6" Grid.Column="1" Text="{Binding SelectedButton.HoverHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox Style="{StaticResource LumiTextBox}"
+                     Grid.Row="6" Grid.Column="1"
+                     Text="{Binding SelectedButton.HoverHex, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"
+                     Margin="0,8,0,0"/>
 
                     <TextBlock Grid.Row="7" Grid.Column="0" Text="Pressed (Hex)" Foreground="#E8DCC3" VerticalAlignment="Center" Margin="0,8,0,0"/>
-                    <TextBox  Style="{StaticResource LumiTextBox}" Grid.Row="7" Grid.Column="1" Text="{Binding SelectedButton.PressedHex, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0"/>
+                    <TextBox Style="{StaticResource LumiTextBox}"
+                     Grid.Row="7" Grid.Column="1"
+                     Text="{Binding SelectedButton.PressedHex, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}"
+                     Margin="0,8,0,0"/>
                 </Grid>
 
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
                     <Button Style="{StaticResource LumiFormButton}" Content="Reload" Command="{Binding ReloadCommand}" Margin="0,0,6,0"/>
                     <Button Style="{StaticResource LumiFormButton}" Content="↑" Command="{Binding MoveUpCommand}" Margin="0,0,6,0" Cursor="Hand"/>
                     <Button Style="{StaticResource LumiFormButton}" Content="↓" Command="{Binding MoveDownCommand}" Margin="0,0,12,0"/>
-                    <Button Style="{StaticResource LumiFormButtonPrimary}" Content="Speichern" Command="{Binding SaveCommand}"/>
+
+                    <!-- Save Button: wird nur aktiv wenn SelectedButton modified ist -->
+                    <Button Style="{StaticResource LumiFormButtonPrimary}"
+                    Content="Speichern"
+                    Command="{Binding SaveCommand}"
+                    IsEnabled="{Binding IsModified}" Cursor="Hand" />
                 </StackPanel>
             </Grid>
         </Border>

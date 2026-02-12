@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿using System;
 using System.Windows.Input;
 using Lumi.Infrastructure;
 
@@ -8,7 +8,6 @@ namespace Lumi.ViewModels
     {
         private ViewModelBase _currentViewModel;
 
-        // Caching: State bleibt erhalten, Views wechseln ohne Neuinstanzierung
         public HomeViewModel Home { get; } = new();
         public SettingsViewModel Settings { get; } = new();
 
@@ -22,26 +21,31 @@ namespace Lumi.ViewModels
             }
         }
 
+        // Exit: hast du schon
+        public event Action? RequestExit;
+
+        // NEU: Navigation-Request
+        public event Action<ViewModelBase>? RequestNavigate;
+
         public ICommand ShowHomeCommand { get; }
         public ICommand ShowSettingsCommand { get; }
         public ICommand ExitCommand { get; }
-        public ICommand CloseCommand { get; }
 
         public HubViewModel()
         {
             _currentViewModel = Home;
 
-            ShowHomeCommand = new RelayCommand(() => CurrentViewModel = Home);
-            ShowSettingsCommand = new RelayCommand(() => CurrentViewModel = Settings);
+            // Nur Request auslösen, View entscheidet
+            ShowHomeCommand = new RelayCommand(() => RequestNavigate?.Invoke(Home));
+            ShowSettingsCommand = new RelayCommand(() => RequestNavigate?.Invoke(Settings));
 
-            ExitCommand = new RelayCommand(() => Application.Current.Shutdown());
-            CloseCommand = new RelayCommand(() =>
-            {
-                // Close über Command ist knifflig ohne Service.
-                // Minimal sauber: Window per CommandParameter übergeben (siehe XAML).
-            });
+            ExitCommand = new RelayCommand(() => RequestExit?.Invoke());
         }
 
-        public void CloseWindow(Window window) => window.Close();
+        // NEU: nur die View darf das aufrufen, nachdem sie validiert hat
+        public void ApplyNavigation(ViewModelBase target)
+        {
+            CurrentViewModel = target;
+        }
     }
 }
